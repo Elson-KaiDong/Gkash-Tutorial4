@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <script src="~/Scripts/js-sha512.js"></script>
+
+    <script type="text/javascript">
+
+        function sha512_hash() {
+            var signatureKey = "oAhVwtUxfrop4cI";
+            var amount = document.getElementById("v_amount").value;
+            if (amount.includes("."))
+                amount = amount.replace(".", "");
+            else
+                amount += "00";
+            
+            var strToBeHashed = (signatureKey + ";" + document.getElementById("CID").value + ";" +
+                document.getElementById("v_cartid").value + ";" + amount + ";" +
+                document.getElementById("v_currency").value).toUpperCase();
+            var sha512value = sha512(strToBeHashed);
+            document.getElementById("signature").value = sha512value;
+        }
+    </script>
+</head>
+
+<h2>Index</h2>
+
+<form method="post" action="https://api-staging.pay.asia/api/paymentform.aspx"
+      enctype="application/x-www-form-urlencoded"
+      onsubmit="sha512_hash();">
+    <input name="version" type="text" value="1.5.5" hidden>
+
+    <div class="form-group">
+        <strong>Merchant ID:</strong>
+        <input name="CID" id="CID" type="text" value="M161-U-33" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <strong>Cart ID:</strong>
+        <input name="v_cartid" id="v_cartid" type="text" value="GkashPO-88888" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <strong>Currency:</strong>
+        <input name="v_currency" id="v_currency" type="text" value="MYR" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <strong>Amount:</strong>
+        <input name="v_amount" id="v_amount" type="text" value="100.00" class="form-control">
+    </div>
+    <input name="signature" id="signature" hidden type="text">
+    <input type="submit" value="Submit" class="btn btn-primary">
+    <input type="text" name="returnurl" value="http://localhost:1939/Home/Return" hidden />
+    <input type="text" name="callback" value="http://localhost:1939/api/Payment/Callback" hidden />
+</form>
+
+
+

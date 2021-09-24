@@ -1,0 +1,53 @@
+﻿@model T4_WebApi.Models.ReturnResponse
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Receipt</h2>
+<div class="container-fluid">
+    <div class="form-group">
+        <label>@Html.LabelFor(model=>model.status)</label>
+        <div>
+            <p>@Model.status</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>@Html.LabelFor(model => model.CID)</label>
+        <div>
+            <p>@Model.CID</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>@Html.LabelFor(model => model.POID)</label>
+        <div>
+            <p>@Model.POID</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>@Html.LabelFor(model => model.cartid)</label>
+        <div>
+            <p>@Model.cartid</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>@Html.LabelFor(model => model.currency)</label>
+        <div>
+            <p>@Model.currency</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>@Html.LabelFor(model => model.amount)</label>
+        <div>
+            <p>@Model.amount</p>
+        </div>
+    </div>
+</div>
+
+
+
